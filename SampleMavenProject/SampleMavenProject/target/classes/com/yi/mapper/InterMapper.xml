@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.yi.dao.InterDao">
+<!-- 查询所有接口-->  
+    <select id="selAllInter" resultType="com.yi.dto.Inter">
+        SELECT 
+		pro_name,inter_id,inter_name,inter_author,inter_features,
+		inter_path,inter_coding,inter_param,out_param
+		FROM
+		interface_table
+    </select>
+<!-- 增加接口 -->
+	<insert id="addInter" parameterType="com.yi.dto.Inter">
+		insert INTO interface_table
+		(pro_name,inter_name,inter_author,
+		inter_features,inter_path,inter_coding,inter_param,out_param)
+		VALUES
+		(#{pro_name},#{inter_name},#{inter_author},#{inter_features},
+		#{inter_path},#{inter_coding},#{inter_param},#{out_param})
+	</insert>
+<!-- 修改接口 -->
+	<update id="updateInter" parameterType="com.yi.dto.Inter">
+		UPDATE interface_table
+		SET
+		pro_name=#{pro_name},inter_name=#{inter_name},inter_author=#{inter_author},
+		inter_features=#{inter_features},inter_path=#{inter_path},
+		inter_coding=#{inter_coding},inter_param=#{inter_param},
+		out_param=#{out_param}
+		WHERE inter_id=#{inter_id}
+	</update>
+<!-- 删除接口 -->
+	<delete id="delInter">
+		delete from interface_table WHERE inter_id=#{inter_id}
+	</delete>
+</mapper>
